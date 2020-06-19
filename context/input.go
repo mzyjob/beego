@@ -89,7 +89,7 @@ func (input *BeegoInput) URI() string {
 
 // URL returns request url path (without query string, fragment).
 func (input *BeegoInput) URL() string {
-	return input.Context.Request.URL.EscapedPath()
+	return input.Context.Request.URL.Path
 }
 
 // Site returns base site url as scheme://domain type.
@@ -284,7 +284,7 @@ func (input *BeegoInput) ParamsLen() int {
 func (input *BeegoInput) Param(key string) string {
 	for i, v := range input.pnames {
 		if v == key && i <= len(input.pvalues) {
-			return url.PathEscape(input.pvalues[i])
+			return input.pvalues[i]
 		}
 	}
 	return ""
